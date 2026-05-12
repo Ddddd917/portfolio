@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>代明昊 · AI Product Portfolio · 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f5f0eb;
+    --bg-warm: #ece6df;
+    --surface: #faf7f4;
+    --surface-card: #efe9e2;
+    --border: #ddd6cc;
+    --text: #1a1714;
+    --text-dim: #4a453e;
+    --text-muted: #8a8379;
+    --accent: #1a1714;
+    --accent-soft: #6b6560;
+    --tag-bg: #e5dfd8;
+    --shadow-sm: 0 1px 2px rgba(26,23,20,0.04);
+    --shadow-md: 0 4px 12px rgba(26,23,20,0.06);
+    --shadow-lg: 0 8px 24px rgba(26,23,20,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ===== COVER (含简介) ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 48px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .cover-eyebrow {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .cover-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .cover-name .name-en {
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .cover-tagline {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .cover-bio {
+    margin: 28px 0;
+  }
+
+  .cover-bio p {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.85;
+    margin-bottom: 14px;
+  }
+
+  .cover-bio p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .cover-bio p:last-child { margin-bottom: 0; }
+
+  .cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+
+  .cover-meta a {
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cover-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--text-muted);
+    margin: 24px 0;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 48px 0 20px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.8;
+  }
+
+  /* ===== STATUS BADGE ===== */
+  .status {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-muted);
+    margin-left: 12px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+
+  /* ===== ARCH STACK ===== */
+  .arch-stack {
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .arch-layer {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .arch-layer:first-child { border-radius: 8px 8px 0 0; }
+  .arch-layer:last-child { border-radius: 0 0 8px 8px; }
+
+  .arch-layer:hover { background: var(--surface-card); }
+
+  .arch-layer-label {
+    padding: 12px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .arch-layer:first-child .arch-layer-label { border-radius: 7px 0 0 0; }
+  .arch-layer:last-child .arch-layer-label { border-radius: 0 0 0 7px; }
+
+  .arch-layer-content {
+    padding: 12px 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .arch-layer-content strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .arch-infra {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    padding: 6px;
+    text-transform: uppercase;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 10px;
+  }
+
+  /* ===== FLOW CARD ===== */
+  .flow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .flow-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .flow-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .flow-example {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .flow-steps {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-dim);
+    background: var(--surface-card);
+    padding: 14px 18px;
+    border-radius: 6px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+
+  /* ===== DECISION ===== */
+  .decision {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .decision:last-child { border-bottom: none; }
+  .decision:has(+ :not(.decision)) { border-bottom: none; }
+
+  .decision-q {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .decision-a {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  /* ===== TABLE ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--text);
+  }
+
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  td:first-child { color: var(--text); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+
+  .tbl-yes { font-weight: 600; color: var(--text); }
+  .tbl-no { color: var(--text-muted); }
+  .tbl-partial { color: var(--accent-soft); }
+
+  /* ===== SCREENSHOT ===== */
+  .screenshot-wrap {
+    margin: 24px 0;
+  }
+
+  .screenshot-frame {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .screenshot-frame img {
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+  }
+
+  .screenshot-caption {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* ===== TAGS ===== */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--tag-bg);
+    color: var(--text-dim);
+    border-radius: 3px;
+  }
+
+  /* ===== INSIGHT ===== */
+  .insight {
+    background: var(--surface-card);
+    border-left: 3px solid var(--text);
+    padding: 16px 22px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-dim);
+  }
+
+  .insight-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    margin: 20px 0;
+    padding-left: 20px;
+    border-left: 1px solid var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 22px 28px;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text);
+  }
+
+  .timeline-item.future::before {
+    background: none;
+    border: 1.5px solid var(--text-muted);
+  }
+
+  .timeline-date {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .timeline-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 2px 0 4px;
+    color: var(--text);
+  }
+
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+
+  /* ===== PROSE ===== */
+  .prose p {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ===== SUB HEADING ===== */
+  .sub-heading {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .note {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-top: 10px;
+  }
+
+  /* ===== DIVIDERS ===== */
+  .sep {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 36px 48px;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  /* ===== PRINT HEADER (fallback) ===== */
+  .print-header {
+    display: none;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    @page {
+      size: A4;
+      margin: 18mm 14mm;
+      @top-right {
+        content: "ddddd917.github.io/portfolio";
+        font-size: 8px;
+        color: #8a8379;
+      }
+    }
+
+    .print-header {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      font-size: 8px;
+      color: #8a8379;
+      padding: 4px 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* 保留背景色与组件配色 */
+    body {
+      background: #f5f0eb !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    .arch-layer,
+    .arch-layer-label,
+    .arch-layer-content,
+    .tag,
+    .insight,
+    .flow-card,
+    .flow-steps,
+    .card,
+    .screenshot-frame,
+    .status,
+    table th,
+    table td {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* 封面独占第一页 */
+    .cover {
+      min-height: auto !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      padding: 36px 48px !important;
+    }
+
+    /* 每个项目（含项目脉络）从新页开始 */
+    .project-start {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+
+    /* sep 不再强制分页，避免额外空白；本身也压平 */
+    .sep {
+      border: none !important;
+      margin: 16px 0 !important;
+      page-break-before: auto !important;
+      break-before: auto !important;
+    }
+
+    /* 关键组件不跨页断裂 */
+    .decision,
+    .card,
+    .flow-card,
+    .insight,
+    .screenshot-wrap,
+    .arch-stack,
+    .timeline-item,
+    table {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    .screenshot-frame { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-header">ddddd917.github.io/portfolio</div>
+
+<!-- ==================== 第一屏：封面 + 个人简介 ==================== -->
+<div class="cover">
+  <div class="cover-eyebrow">Portfolio · 2026</div>
+  <h1 class="cover-name">代明昊 <span class="name-en">· Jasper</span></h1>
+  <p class="cover-tagline">CS 科班，AI 产品实战经验，从 PRD 到上线的独立交付能力。</p>
+
+  <div class="cover-divider"></div>
+
+  <div class="cover-bio">
+    <p>格拉斯哥大学计算机科学专业大二在读，职业方向是 <strong>AI 产品经理</strong>。</p>
+
+    <p>2025 年暑假在阿维塔科技（长安汽车旗下）完成产品经理实习，参与售后系统建设和质量域 AI 场景探索，对 AI 从 PoC 到落地的真实瓶颈有了一手认知。</p>
+
+    <p>2026 年初，OpenClaw 等 AI Agent 产品的爆发让我看到了 AI 的执行能力，也让我养成了一个习惯：在现有工作流遇到效率瓶颈时，先想「能不能做一个 AI 工具来解决」，然后用 Vibe Coding 快速验证。<strong>ORION</strong> 是这个思路下最大的一个项目——一个本地优先、深度个性化的个人智能系统；文档入库助手是 ORION 建设过程中解决的第一个具体问题；Resume Copilot 和 AutoClaw 则是求职过程中用同样的方式解决的效率瓶颈。这份作品集里的所有项目，都来自同一个出发点：发现问题，然后动手做。</p>
+
+    <p>CS 背景提供技术判断力，产品实习提供业务敏感度，Vibe Coding 提供快速验证能力——三者结合让我能在 AI 产品的全链路上独立推进。</p>
+  </div>
+
+  <div class="cover-divider"></div>
+
+  <div class="cover-meta">
+    <div>格拉斯哥大学 · Computer Science · 2024–2028</div>
+    <div>dddd_d917@163.com · (+86) 195 6227 6427</div>
+    <div><a href="https://github.com/Ddddd917">github.com/Ddddd917</a></div>
+    <div>在线作品集 · <a href="https://ddddd917.github.io/portfolio/">ddddd917.github.io/portfolio</a></div>
+  </div>
+
+  <div style="margin-top: 32px; display: flex; align-items: center; gap: 16px;">
+    <img src="data:image/png;base64,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" alt="在线作品集二维码" style="width: 80px; height: 80px; border-radius: 4px;">
+    <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6;">
+      扫码查看在线版<br>
+      ddddd917.github.io/portfolio
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ==================== 项目脉络 ==================== -->
+  <div class="section project-start">
+    <div class="section-eyebrow">Story</div>
+    <h2 class="section-title">项目脉络</h2>
+    <p class="section-desc">从 ORION 的构想出发，每一个具体瓶颈都催生了一个独立工具——这份作品集里的所有项目，本质上是同一条主线上的分支。</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2026.02 · 起点</div>
+      <div class="timeline-title">OpenClaw 爆火 → ORION 构想</div>
+      <div class="timeline-desc">体验 AI Agent 的执行能力后，发现通用工具不了解个人上下文、数字资产分散混乱。开始设计一个本地优先、深度个性化的个人智能系统。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2026.03 · 第一个瓶颈</div>
+      <div class="timeline-title">知识库搭建受阻 → 文档智能入库助手</div>
+      <div class="timeline-desc">硬件设备受限，先搭建个人知识库。发现文档入库是最大摩擦点——手动命名、分类、提取信息，管理文档，每个文档耗时5分钟。用 Vibe Coding 三小时做出解决方案。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2026.03 · 求职效率</div>
+      <div class="timeline-title">暑期求职效率低 → Resume Copilot</div>
+      <div class="timeline-desc">暑期求职批量投递后，JD 匹配度判断和投递进度管理成了效率瓶颈。做了一个 AI 驱动的简历匹配分析 + 投递管理工具。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2026.04 · 面试复盘</div>
+      <div class="timeline-title">TapTap 面试暴露信息盲区 → AutoClaw 资讯助手</div>
+      <div class="timeline-desc">面试被问「Claude Code 最近有什么更新」答不上来。当天搭建自动化资讯系统，每日推送 AI 领域动态。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2026.04 – 05 · 系统学习</div>
+      <div class="timeline-title">Anthropic Academy → 产品思考沉淀</div>
+      <div class="timeline-desc">基于 Anthropic Academy 系统学习 AI 产品知识体系（Agent 架构、MCP 协议、Eval 框架、Prompt Engineering），结合项目实践形成对 Vibe Coding 方法论和 AI 产品设计的结构化思考。</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="timeline-date">2026.06 → · 下一步</div>
+      <div class="timeline-title">ORION 开发启动</div>
+      <div class="timeline-desc">Mac mini M4 Pro 到手，硬件问题解决，从架构设计进入工程实现。</div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ==================== PROJECT 01 · ORION ==================== -->
+  <div class="section project-start">
+    <div class="section-eyebrow">Project 01 · Architecture</div>
+    <h2 class="section-title">ORION · 个人智能系统 <span class="status">设计阶段</span></h2>
+    <p class="section-desc">本地优先的个人 AI 系统——不是一个更好的聊天机器人，而是一个真正了解我的智能基础设施。</p>
+  </div>
+
+  <div class="prose">
+    <p>ORION——名字来自猎户星座，寓意方向感与系统性。展开为 Orchestrated Reasoning and Intelligence Operating Network，定义了系统的核心特征：编排式推理、智能化运作、网络化协同。</p>
+
+    <p>设计 ORION 有两个并行的动机。第一是<strong>能力个性化</strong>：OpenClaw 证明了 AI Agent 能做事，但它是通用的——每次对话都要重新解释背景，不了解我的项目、我的文件、我的偏好。我想要的是一个了解我全部上下文的个人 AI 系统，能做出有针对性的判断而不是通用的回答。第二是<strong>数字资产管理</strong>：文件分散在多个设备和平台，命名不规范，找不到的情况时有发生。按传统方式手动整理需要耗费大量时间，但 AI 让系统性地解决这个问题变得可能了。</p>
+
+    <p>一句话概括 ORION 的目标：<strong>让 AI 从通用工具变成个人基础设施。</strong></p>
+  </div>
+
+  <h3 class="sub-heading">五层架构</h3>
+
+  <div class="arch-stack">
+    <div class="arch-layer">
+      <div class="arch-layer-label">展示层</div>
+      <div class="arch-layer-content"><strong>Display</strong> — iPad 原生 App · 飞书推送 · Web Dashboard</div>
+    </div>
+    <div class="arch-layer">
+      <div class="arch-layer-label">执行层</div>
+      <div class="arch-layer-content"><strong>Execution</strong> — Dify Workflow · Ollama 本地推理 · 云端 LLM 兜底</div>
+    </div>
+    <div class="arch-layer">
+      <div class="arch-layer-label">知识层</div>
+      <div class="arch-layer-content"><strong>Knowledge</strong> — ChromaDB 向量库 · SQLite 结构化 · Neo4j 图谱</div>
+    </div>
+    <div class="arch-layer">
+      <div class="arch-layer-label">理解层</div>
+      <div class="arch-layer-content"><strong>Understanding</strong> — 意图识别 · LLM Router · 多轮对话 · 动态 Prompt</div>
+    </div>
+    <div class="arch-layer">
+      <div class="arch-layer-label">交互层</div>
+      <div class="arch-layer-content"><strong>Interaction</strong> — Whisper STT · Edge TTS · 飞书 Bot · 人格系统</div>
+    </div>
+  </div>
+
+  <div class="arch-infra">↕ Tailscale VPN — 全设备安全互联 ↕</div>
+
+  <p class="note">上层依赖下层能力，数据在层间按规定接口流动。每层职责清晰、边界明确。</p>
+
+  <hr class="sep">
+
+  <!-- PROJECT 01 · Data Flow -->
+  <div class="section">
+    <div class="section-eyebrow">Project 01 · Data Flow</div>
+    <h2 class="section-title">核心数据流与设计决策</h2>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-label">Task Flow</div>
+    <div class="flow-title">任务流 — 多轮确认、异步执行</div>
+    <div class="flow-example">「帮我准备和 XX 的见面材料」</div>
+    <div class="flow-steps">语音输入 → [交互层] Whisper STT
+  → [理解层] 意图识别 → 「任务类」
+  → [理解层] 多轮对话确认细节
+  → [执行层] Dify Workflow：
+      ├─ 检索 ChromaDB（相关文档）
+      ├─ 查询 SQLite（人物信息）
+      └─ LLM 生成 → 格式化 PDF
+  → [展示层] iPad 实时进度 + 飞书推送</div>
+  </div>
+
+  <p class="note">除任务流外，系统还支持<strong style="color:var(--text-dim);">查询流</strong>（单轮快速问答，走本地 8B 模型，亚秒级响应）和<strong style="color:var(--text-dim);">录入流</strong>（语音或文字录入生活记录，自动提取实体后写入知识库）。三条链路覆盖日常使用的全部交互模式。</p>
+
+  <h3 class="sub-heading">核心产品决策</h3>
+
+  <div class="decision">
+    <div class="decision-q">为什么用三种数据库？</div>
+    <div class="decision-a">不同数据有不同的最佳检索方式。「阿维塔项目准确率」→ 语义检索（ChromaDB）；「评分最高的电影」→ 结构化查询（SQLite）；「认识的人里谁做 AI」→ 图查询（Neo4j）。多模态存储直接影响回答的准确性和覆盖面。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">为什么需要 LLM Router？</div>
+    <div class="decision-a">「今天天气」用 8B 模型 0.5s 出结果；「分析面试策略」需要 32B 甚至云端 Claude。路由策略决定用户感知的响应速度和回答质量——AI 产品中「成本-质量-延迟」三角的核心权衡。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">为什么以语音作为主交互模式？</div>
+    <div class="decision-a">ORION 的核心使用场景不是坐在电脑前打字，而是在日常生活中随时触发——做饭时问一个问题、走路时录入一条想法、出门前确认日程。语音是这些场景下摩擦最低的交互方式。因此系统的输入输出都围绕语音设计：Whisper 做语音转文字，Edge TTS 做语音合成，DJI Mic Mini 保证拾音质量（STT 的准确率高度依赖音频信噪比）。目标是让交互体验接近「和一个了解你的人对话」，而不是「打开一个 App 输入指令」。</div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- PROJECT 01 · Positioning -->
+  <div class="section">
+    <div class="section-eyebrow">Project 01 · Positioning</div>
+    <h2 class="section-title">设计哲学对比</h2>
+  </div>
+
+  <table>
+    <tr>
+      <th>维度</th>
+      <th>Siri / Google Assistant</th>
+      <th>ChatGPT / Claude</th>
+      <th>ORION</th>
+    </tr>
+    <tr>
+      <td>设计哲学</td>
+      <td class="tbl-no">通用助手，服务所有人</td>
+      <td class="tbl-no">通用对话，按会话组织</td>
+      <td class="tbl-yes">个人系统，深度定制</td>
+    </tr>
+    <tr>
+      <td>数据所有权</td>
+      <td class="tbl-no">云端，平台所有</td>
+      <td class="tbl-no">云端，平台所有</td>
+      <td class="tbl-yes">本地优先，个人所有</td>
+    </tr>
+    <tr>
+      <td>个性化深度</td>
+      <td class="tbl-no">浅层偏好</td>
+      <td class="tbl-partial">会话级 Context</td>
+      <td class="tbl-yes">持久记忆 + 知识图谱</td>
+    </tr>
+    <tr>
+      <td>交互模式</td>
+      <td class="tbl-partial">语音为主，能力有限</td>
+      <td class="tbl-no">文字为主</td>
+      <td class="tbl-yes">语音优先，多设备协同</td>
+    </tr>
+    <tr>
+      <td>扩展方式</td>
+      <td class="tbl-no">平台生态（Skills/Actions）</td>
+      <td class="tbl-partial">插件 / MCP</td>
+      <td class="tbl-yes">个人定制 Workflow</td>
+    </tr>
+    <tr>
+      <td>核心取舍</td>
+      <td class="tbl-no">覆盖广度</td>
+      <td class="tbl-partial">推理深度</td>
+      <td class="tbl-yes">个人深度</td>
+    </tr>
+  </table>
+
+  <p class="note">ORION 不是在做一个「更好的 ChatGPT」，而是在解决一个不同维度的问题：通用产品追求覆盖更多用户，ORION 追求深度服务一个人。</p>
+
+  <div class="insight">
+    <div class="insight-label">诚实声明</div>
+    这个项目目前处于架构设计阶段，尚无可运行的代码产出。放入作品集的原因是：系统级的架构思考能力——从需求场景到技术选型到模块边界的完整设计链路——本身就是 AI 产品经理的核心能力之一。
+  </div>
+
+  <hr class="sep">
+
+  <!-- ==================== PROJECT 02 · 文档智能入库助手 ==================== -->
+  <div class="section project-start">
+    <div class="section-eyebrow">Project 02</div>
+    <h2 class="section-title">文档智能入库助手 <span class="status">已上线</span></h2>
+    <p class="section-desc">上传文档，AI 自动生成摘要、识别知识域、提取标签、建议标准化文件名，一键归档到本地知识库。</p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">Streamlit</span>
+      <span class="tag">智谱 GLM API</span>
+      <span class="tag">Claude Code</span>
+      <span class="tag">零手写代码</span>
+    </div>
+    <p class="note">GitHub · <a href="https://github.com/Ddddd917/doc-ingestion-tool" style="color:var(--text-dim);border-bottom:1px solid var(--border);text-decoration:none;">github.com/Ddddd917/doc-ingestion-tool</a></p>
+  </div>
+
+  <div class="prose">
+    <p>在搭建 ORION 个人知识库的过程中，文档入库是最大的摩擦点：手动给文件起名、分类到文件夹、提取关键信息——每个文档要花 5-10 分钟，导致知识库建设一直停留在「想做但没做」的状态。这个工具的目标是把入库摩擦降到接近零。</p>
+  </div>
+
+  <h3 class="sub-heading">核心产品决策</h3>
+
+  <div class="decision">
+    <div class="decision-q">为什么从单页重构为多页应用？</div>
+    <div class="decision-a">Phase 2 测试后发现，文档分析只是入口，入库后的管理才是核心使用场景。从单页改为 10 个页面（Dashboard + 上传 + 8 个知识域），涉及 4 个新核心模块的架构重构。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">为什么做本地文件直接操作？</div>
+    <div class="decision-a">这个工具不只是分析文档，而是直接对本地文件执行重命名、移动、归档——比在 Finder 里手动操作更直观，也让 ORION 知识库的文件夹结构始终保持清晰。但文件操作有不可逆风险，所以所有操作都需要用户确认后才执行：AI 出建议，人来校准。删除操作额外加了 checkbox 安全开关防误删。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">为什么设计 8 个知识域而不是更多或更少？</div>
+    <div class="decision-a">太多导致分类模糊，太少导致某些域文档过多。8 个覆盖了日常文档的主要类别，每个域附带 0-1 的置信度分数，支持主域 / 关联域分离。</div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div class="screenshot-frame">
+      <img src="images/doc-dashboard.jpg" alt="文档入库助手 Dashboard">
+    </div>
+    <div class="screenshot-caption">Dashboard — 标签云、最近入库文档与 AI 自动洞察</div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div class="screenshot-frame">
+      <img src="images/doc-analysis.jpg" alt="文档分析结果">
+    </div>
+    <div class="screenshot-caption">AI 分析结果 — 摘要、知识域识别（置信度 95%）、标签提取与入库操作</div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div class="screenshot-frame">
+      <img src="images/doc-domain.jpg" alt="知识域页面">
+    </div>
+    <div class="screenshot-caption">知识域页面 — 按领域浏览已入库文档，查看摘要与标签</div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ==================== PROJECT 03 · Resume Copilot ==================== -->
+  <div class="section project-start">
+    <div class="section-eyebrow">Project 03</div>
+    <h2 class="section-title">Resume Copilot <span class="status">已上线</span></h2>
+    <p class="section-desc">暑期求职批量投递后，JD 匹配判断和投递进度管理成了效率瓶颈。这个工具让 AI 自动完成简历匹配分析，并提供投递进度管理看板。</p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">Streamlit</span>
+      <span class="tag">智谱 GLM API</span>
+      <span class="tag">Claude Code</span>
+    </div>
+    <p class="note">GitHub · <a href="https://github.com/Ddddd917/personal_resume_analyzer" style="color:var(--text-dim);border-bottom:1px solid var(--border);text-decoration:none;">github.com/Ddddd917/personal_resume_analyzer</a></p>
+  </div>
+
+  <div class="prose">
+    <p>暑期求职阶段批量投递后，两个问题浮出水面：一是逐条阅读 JD 判断匹配度效率太低，光是「这个岗位值不值得投」就要花十几分钟；二是投递记录分散，无法追踪进度和复盘结果。这个工具的目标是把「读 JD → 判断匹配 → 投递管理」这条链路自动化。</p>
+
+    <p>上传简历后自动构建个人画像（数据结构对齐飞书 HR 系统），粘贴岗位 JD 后 AI 完成三维匹配分析（硬性条件 40%、经验匹配 35%、软性匹配 25%），输出匹配度评分、逐条差距诊断和定制化简历优化建议。分析结果自动保存到投递看板，实现从 JD 解析到匹配分析到投递决策的完整工作流。</p>
+  </div>
+
+  <h3 class="sub-heading">核心产品决策</h3>
+
+  <div class="decision">
+    <div class="decision-q">为什么个人画像数据结构要对齐飞书 HR 系统？</div>
+    <div class="decision-a">观察到目标公司（字节、智谱、小米等）大多使用飞书 HR 系统管理招聘流程。与其自己设计一套画像结构，不如直接对齐飞书 HR 的字段标准（基础信息、教育经历 × 多段、实习经历 × 多段、项目经历 × 多段）。这样 AI 做匹配分析时，对照的维度和 HR 实际筛选简历时看的维度是一致的。这不是技术决策，是产品决策——从用户实际场景出发。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">为什么用三维评分而不是单一匹配分数？</div>
+    <div class="decision-a">单一分数掩盖了短板在哪里。三维拆分为硬性条件（40%）、经验匹配（35%）、软性匹配（25%）——硬性条件是门槛，不达标就不用投，所以权重最高；软性匹配最难量化，所以权重最低。面试官看重的不是总分，而是差距诊断：到底差在学历、经验、还是软性能力上。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">为什么要做投递看板而不是只做分析？</div>
+    <div class="decision-a">分析是单次行为，但求职是持续过程。批量投递后，需要追踪每个岗位的状态（未投递 / 已投递 / 已回复 / 面试中 / 已通过 / 已拒绝），按匹配度排序决定优先级，复盘哪些类型的岗位转化率更高。看板把单次分析串成了可管理的工作流。</div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div class="screenshot-frame">
+      <img src="images/resume-match.jpg" alt="JD 匹配分析结果">
+    </div>
+    <div class="screenshot-caption">匹配分析 — 三维评分（硬性 40% / 经验 35% / 软性 25%）与差距诊断</div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div class="screenshot-frame">
+      <img src="images/resume-board.jpg" alt="投递看板">
+    </div>
+    <div class="screenshot-caption">投递看板 — 按匹配度排序、状态追踪、详细分析可展开</div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">开发教训</div>
+    开发中遇到 API 静默失败——模型名拼写错误（产品名 <code style="font-family:'JetBrains Mono',monospace;background:var(--tag-bg);padding:1px 6px;border-radius:3px;font-size:12.5px;">glm-4.7-flashx</code> vs API 参数 <code style="font-family:'JetBrains Mono',monospace;background:var(--tag-bg);padding:1px 6px;border-radius:3px;font-size:12.5px;">glm-4-flashx</code>），但 API 无报错提示，页面一直转圈。排查走了很多弯路。产品启示：<strong style="color:var(--text);">AI 产品的失败必须可见，静默失败是最差的用户体验。</strong>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ==================== PROJECT 04 · AutoClaw ==================== -->
+  <div class="section project-start">
+    <div class="section-eyebrow">Project 04</div>
+    <h2 class="section-title">AutoClaw 行业资讯助手</h2>
+    <p class="section-desc">面试失败 → 当天用 AI 解决问题，把信息盲区转成自动化推送的资讯系统。</p>
+  </div>
+
+  <div class="prose">
+    <p>TapTap 面试中，面试官问了一个问题：「你说经常用 Claude Code，那你知道最近一周 Claude Code 有什么更新吗？」我答不上来。我确实每天都在用，但从没主动追踪过它的更新日志和 Changelog。面试官建议我关注 Twitter 上 AI 领域核心人物的动态。</p>
+
+    <p>面试结束后，我用智谱 AutoClaw 平台搭建了一套自动化资讯系统：每日从科技媒体抓取 AI 领域资讯，经 LLM 筛选后通过飞书 Bot 推送简报；每周两次推送 Claude、Cursor、Dify 等工具的版本更新摘要。</p>
+
+    <p><strong>失败本身不是资产，但失败后的行动速度是。</strong></p>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div class="screenshot-frame">
+      <img src="images/autoclaw-daily-news.jpg" alt="飞书每日资讯推送">
+    </div>
+    <div class="screenshot-caption">飞书群 — AI 每日资讯简报自动推送</div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ==================== REFLECTIONS ==================== -->
+  <div class="section project-start">
+    <div class="section-eyebrow">Reflections</div>
+    <h2 class="section-title">Vibe Coding 与 AI 产品思考</h2>
+    <p class="section-desc">四个项目的实践 + Anthropic Academy 的系统学习，沉淀出的方法论和认知。</p>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">Vibe Coding 方法论</div>
+    Vibe Coding 不是「让 AI 写代码」，而是「用产品思维驱动 AI 开发」。四个项目做下来，我的核心价值归结为三件事：第一，<strong style="color:var(--text);">定义做什么和不做什么</strong>——比如入库助手决定跳过导出功能优先做文件管理，Resume Copilot 决定画像结构对齐飞书 HR 而非自己设计；第二，<strong style="color:var(--text);">做架构决策</strong>——比如元数据与文件分离存储、知识库路径放在用户文档目录而非项目目录、三维评分而非单一匹配分数；第三，<strong style="color:var(--text);">测试归因</strong>——发现命名缺少文档类型维度、API 静默失败的根因是模型名拼写错误，都是我在测试中识别问题后定位原因并给 AI 新 Prompt 修复的。
+  </div>
+
+  <h3 class="sub-heading">学习 AI 产品的三个认知</h3>
+
+  <div class="decision">
+    <div class="decision-q">从简单方案开始，只在证明必要时增加复杂度</div>
+    <div class="decision-a">Anthropic 在《Building Effective Agents》中的核心建议是 "find the simplest solution possible"。这个原则贯穿了我所有项目的技术选型：入库助手用 Streamlit 而不是 React，用本地 JSON 而不是数据库；ORION 的架构设计是混合式的——日常查询走轻量 Routing 快速响应，结构化任务走 Workflow 保证稳定性，只有真正需要动态决策的复杂任务才启动 Agent 模式。不是越复杂越好，而是刚好够用最好。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">AI 产品的核心设计挑战是非确定性</div>
+    <div class="decision-a">传统软件同样的输入一定产出同样的结果，但 Agent 系统中 LLM 的每一步决策都是概率性的——同样的输入可能走不同的路径。这意味着 Bug 难复现、成本难预测、用户无法预期系统行为。我在 Resume Copilot 开发中遇到的 API 静默失败就是一个缩影：模型名拼写错误不会报错，只会静默挂起，排查走了很多弯路。产品设计上，这要求两件事——透明度（让用户看到 AI 在做什么）和可控性（关键操作必须人工确认）。入库助手的「AI 出建议，人来校准」就是这个原则的体现。</div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-q">AI 产品经理的核心能力是判断力，不是编码能力</div>
+    <div class="decision-a">Vibe Coding 证明了一件事：代码可以由 AI 生成，但「做什么、不做什么、做到什么程度」这些判断无法自动化。哪个功能该砍（删除面试追踪模块）、数据结构该对齐谁（飞书 HR 系统）、架构该怎么拆（单页重构为多页）、在 Agent 光谱上该站在哪个位置（ORION 的混合架构）——这些产品决策是 PM 不可替代的价值。技术在加速变化，但判断力的积累没有捷径。</div>
+  </div>
+
+  <div class="footer">
+    代明昊 · AI Product Portfolio · 2026
+  </div>
+
+</div>
+</body>
+</html>
