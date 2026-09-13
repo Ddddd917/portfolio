@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-language="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Minghao (Jasper) Dai — Computer Science undergraduate, AI product and application development. Bilingual portfolio with internship projects and personal work.">
+  <meta name="color-scheme" content="light">
+  <title>Minghao (Jasper) Dai — Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="content.css">
+  <script src="content-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="profile" data-assets="@@ASSETS@@">
+  <noscript><p class="script-note">Enable JavaScript for navigation and language switching. All résumé text is included below. / 请启用 JavaScript 使用导航和语言切换，简历正文已包含在页面中。</p></noscript>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#profile" aria-label="Portfolio home" data-i18n-aria="home">Jasper<span aria-hidden="true">.</span></a>
+      <nav class="page-tabs" role="tablist" aria-label="Portfolio pages" data-i18n-aria="navigation">
+        <span class="tab-indicator" aria-hidden="true"></span>
+        <button type="button" id="tab-profile" class="page-tab" role="tab" aria-controls="page-profile" aria-selected="true" tabindex="0" data-tab="profile"><span data-i18n="profile">Profile</span></button>
+        <button type="button" id="tab-internships" class="page-tab" role="tab" aria-controls="page-internships" aria-selected="false" tabindex="-1" data-tab="internships"><span data-i18n="internships">Internship Projects</span><span class="tab-count">09</span></button>
+        <button type="button" id="tab-work" class="page-tab" role="tab" aria-controls="page-work" aria-selected="false" tabindex="-1" data-tab="work"><span data-i18n="work">Personal Work</span><span class="tab-count">06</span></button>
+      </nav>
+      <div class="language-switch" role="group" aria-label="Language / 语言"><button type="button" data-language="en" aria-pressed="true" lang="en">EN</button><span aria-hidden="true">/</span><button type="button" data-language="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+  </header>
+  <main id="main" class="main-shell" tabindex="-1">
+    <section class="page-panel" id="page-profile" role="tabpanel" aria-labelledby="tab-profile">
+      <div class="profile-card">
+        <aside class="profile-identity">@@IDENTITY@@
+          <section class="resume-section identity-skills" id="skills">
+            <div class="section-heading"><div><h2 data-i18n="skills">Skills & Tools</h2></div><button type="button" class="text-link detail-link" data-profile-detail="skills"><span data-i18n="fullDetails">Full details</span> ↗</button></div>
+            <div class="skills-grid" id="skills-slots">@@SKILLS@@</div>
+          </section>
+          @@IDENTITY_DETAILS@@</aside>
+        <div class="profile-records">
+      <section class="resume-section" id="education">
+        <div class="section-heading"><div><h2 data-i18n="education">Education</h2></div><button type="button" class="text-link detail-link" data-profile-detail="education"><span data-i18n="fullDetails">Full details</span> ↗</button></div>
+        <div class="education-grid" id="education-slots">@@EDUCATION@@</div>
+      </section>
+      <section class="resume-section" id="experience">
+        <div class="section-heading"><div><h2 data-i18n="experience">Internship Experience</h2></div><button type="button" class="text-link detail-link" data-profile-detail="experience"><span data-i18n="fullDetails">Full details</span> ↗</button></div>
+        <div class="experience-list" id="experience-slots">@@EXPERIENCE@@</div>
+      </section>
+        </div>
+      </div>
+    </section>
+    <section class="page-panel" id="page-internships" role="tabpanel" aria-labelledby="tab-internships" hidden>
+      <div class="page-intro"><div><p class="eyebrow"><span class="index-number">02</span><span class="eyebrow-line" aria-hidden="true"></span><span data-i18n="internshipEyebrow">From context to delivery</span></p>@@INTERNSHIP_TITLE@@</div><button type="button" class="button secondary expand-all" data-scope="internships" aria-expanded="false"><span data-i18n="expandAll">Expand all</span><span aria-hidden="true">+</span></button></div>
+      <div id="internship-slots">@@INTERNSHIPS@@</div>
+    </section>
+    <section class="page-panel" id="page-work" role="tabpanel" aria-labelledby="tab-work" hidden>
+      <div class="page-intro"><div><p class="eyebrow"><span class="index-number">03</span><span class="eyebrow-line" aria-hidden="true"></span><span data-i18n="workEyebrow">Ideas made tangible</span></p>@@WORK_TITLE@@</div><span class="page-total" data-i18n="workCount">Six spaces for making.</span></div>
+      <div class="work-grid" id="work-slots">@@WORK@@</div>
+    </section>
+  </main>
+  <footer class="site-footer"><div><a class="wordmark" href="#profile" aria-label="Portfolio home" data-i18n-aria="home">Jasper<span aria-hidden="true">.</span></a><span class="footer-note" data-i18n="prototypeNote">Minghao (Jasper) Dai · Selected work</span></div><button type="button" class="back-top text-link"><span data-i18n="backTop">Back to top</span><span aria-hidden="true">↑</span></button></footer>
+  <dialog class="media-dialog" id="media-dialog" aria-labelledby="media-title">
+    <div class="dialog-top"><div><p class="eyebrow" data-i18n="mediaEyebrow">A CLOSER LOOK</p><h2 id="media-title">Media preview</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close preview" data-i18n-aria="close">×</button></div>
+    <div class="media-stage"></div><p class="media-caption" id="media-caption"></p>
+    <div class="media-footer"><button type="button" class="icon-button media-prev" aria-label="Previous image" data-i18n-aria="previous">←</button><span class="media-index" aria-live="polite">01 / 03</span><button type="button" class="icon-button media-next" aria-label="Next image" data-i18n-aria="next">→</button></div>
+  </dialog>
+  @@FULL_PROFILE@@
+  <div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>
