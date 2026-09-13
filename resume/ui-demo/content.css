@@ -115,9 +115,11 @@ code { font: .86em/1.7 var(--mono); background: #a5584009; border: 1px solid #a5
 .cover-screenshot .window-screen { display: block; min-height: 0; background: #fff; overflow: hidden; }
 .window-screen img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top; }
 .window-bar { height: 21px; flex-shrink: 0; }
-.media-stage { background: #efeae2; min-height: 0; aspect-ratio: auto; height: min(60dvh, 660px); }
+/* Definite grid tracks so the media's 100% height resolves against the stage (not its own intrinsic size): the
+   whole photo is shown, letterboxed, never cropped. */
+.media-stage { background: #efeae2; min-height: 0; aspect-ratio: auto; height: min(60dvh, 660px); grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
 .media-stage::before { display: none; }
-.media-stage img, .media-stage video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.media-stage img, .media-stage video { display: block; width: 100%; height: 100%; min-height: 0; max-height: 100%; object-fit: contain; }
 .media-stage { position: relative; }
 .media-play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; padding: 0 0 0 5px; border-radius: 50%; border: 1px solid var(--line); background: #faf7f0f2; color: var(--accent); font-size: 26px; line-height: 1; display: grid; place-items: center; box-shadow: 0 16px 34px -16px #29272299; cursor: pointer; transition: transform var(--fast), background var(--fast); }
 .media-play:hover { transform: scale(1.06); background: var(--surface-raised); }
@@ -159,18 +161,24 @@ html[data-language="zh"] .work-card-heading h2 { line-height: 1.5; font-size: 23
   .profile-identity .portrait-mat { max-height: clamp(160px, 38dvh, 400px); }
   .identity-copy .identity-name { font-size: clamp(28px, 3.4dvh, 46px); margin: 6px 0 6px; max-width: none; }
   .identity-copy .identity-headline { font-size: var(--fs); max-width: none; }
-  .profile-records { border-left: 1px solid var(--line); padding-left: clamp(24px, 3vw, 40px); align-content: space-between; gap: var(--gap); }
-  .profile-records .section-heading, .identity-skills .section-heading { margin-bottom: calc(var(--gap) * .6); }
-  .profile-records .section-heading h2 { font-size: var(--fs-h); }
+  /* --fit is set by app.js (1–1.22): it scales the right column's type and spacing so the text fills the fixed-height
+     column instead of leaving one large hole between the two sections. */
+  .profile-records { --fit: 1; --rgap: calc(var(--gap) * var(--fit)); border-left: 1px solid var(--line); padding-left: clamp(24px, 3vw, 40px); align-content: space-between; gap: var(--rgap); }
+  .identity-skills .section-heading { margin-bottom: calc(var(--gap) * .6); }
+  .profile-records .section-heading { margin-bottom: calc(var(--rgap) * .6); }
+  .profile-records .section-heading h2 { font-size: calc(var(--fs-h) * var(--fit)); }
   .identity-skills .section-heading h2 { font-size: calc(var(--fs-h) * .88); }
-  .brief-list li, .profile-records .slot-subtitle, .profile-records .slot-meta, .contact-links, .exp-org { font-size: var(--fs); line-height: 1.5; }
-  .course-inline, .identity-skills .skill-excerpt, .identity-skills .skill-category h3 { font-size: calc(var(--fs) * .95); line-height: 1.45; }
+  .contact-links { font-size: var(--fs); line-height: 1.5; }
+  .brief-list li, .profile-records .slot-subtitle, .profile-records .slot-meta, .exp-org { font-size: calc(var(--fs) * var(--fit)); line-height: 1.5; }
+  .identity-skills .skill-excerpt, .identity-skills .skill-category h3 { font-size: calc(var(--fs) * .95); line-height: 1.45; }
+  .course-inline { font-size: calc(var(--fs) * .95 * var(--fit)); line-height: 1.45; }
   html[data-language="zh"] .identity-skills .skill-excerpt, html[data-language="zh"] .course-inline, html[data-language="zh"] .brief-list li { line-height: 1.55; }
-  .profile-records .slot-title, .profile-records .experience-row .slot-title { font-size: var(--fs-title); }
-  .brief-list { gap: calc(var(--gap) * .4); margin-top: calc(var(--gap) * .5); }
-  .profile-records .experience-row { padding: calc(var(--gap) * .8) 0; }
-  .profile-records .education-grid { grid-template-columns: 1fr; gap: calc(var(--gap) * .5); }
-  .profile-records .education-card { padding-top: calc(var(--gap) * .7); }
+  .profile-records .slot-title, .profile-records .experience-row .slot-title { font-size: calc(var(--fs-title) * var(--fit)); }
+  .brief-list { gap: calc(var(--rgap) * .4); margin-top: calc(var(--rgap) * .5); }
+  .profile-records .experience-row { padding: calc(var(--rgap) * .8) 0; }
+  .profile-records .education-grid { grid-template-columns: 1fr; gap: calc(var(--rgap) * .5); }
+  .profile-records .education-card { padding-top: calc(var(--rgap) * .7); }
+  .profile-records .experience-list { display: grid; gap: calc(var(--rgap) * .3); }
   .course { white-space: nowrap; }
   .identity-skills .skill-category { padding-top: calc(var(--gap) * .5); }
   .identity-skills .skill-category h3 { margin-bottom: 2px; }

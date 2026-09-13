@@ -85,6 +85,7 @@
   let initialized = false;
   let rail = null;
   let railLabelTimer;
+  let fitFrame;
 
   function animate(node, frames, options) {
     if (reducedMotion.matches || !node.animate) return null;
@@ -118,6 +119,30 @@
       document.querySelector('.reading-progress span').style.transform = `scaleX(${progress})`;
       document.querySelector('.site-header').classList.toggle('is-scrolled', scrollY > 12);
       updateRail();
+    });
+  }
+
+  // Profile card (fixed one-screen height on desktop): scale the right column's type and spacing up to 1.22×
+  // until its two sections nearly fill the column, so leftover height becomes breathing room, not a hole.
+  function fitProfile() {
+    cancelAnimationFrame(fitFrame);
+    fitFrame = requestAnimationFrame(() => {
+      const records = document.querySelector('.profile-records');
+      if (!records) return;
+      records.style.removeProperty('--fit');
+      if (activePage !== 'profile' || !matchMedia('(min-width: 1100px) and (min-height: 860px)').matches) return;
+      const sections = [...records.children];
+      const measure = () => sections.reduce((sum, node) => sum + node.getBoundingClientRect().height, 0)
+        + parseFloat(getComputedStyle(records).rowGap || '0') * (sections.length - 1);
+      const available = records.clientHeight;
+      let scale = Math.min(1.22, available / measure());
+      if (scale <= 1.02) return;
+      for (let step = 0; step < 8; step++) {
+        records.style.setProperty('--fit', scale.toFixed(3));
+        if (measure() <= available - 6) return;
+        scale -= 0.025;
+        if (scale <= 1) { records.style.removeProperty('--fit'); return; }
+      }
     });
   }
 
@@ -294,6 +319,7 @@
     updateProfileDetailTitle();
     updateIndicator();
     updateProgress();
+    fitProfile();
   }
 
   function showPage(page, {route = true, moveFocus = false, scroll = true} = {}) {
@@ -328,6 +354,7 @@
     if (moveFocus) document.querySelector(`#tab-${page}`).focus({preventScroll: true});
     updateIndicator();
     updateProgress();
+    if (page === 'profile') fitProfile();
     initialized = true;
   }
 
@@ -602,12 +629,13 @@
     updateProgress();
   });
   // Serif metrics settle after font loading; realign the indicator once fonts are in.
-  document.fonts?.ready.then(updateIndicator);
+  document.fonts?.ready.then(() => { updateIndicator(); fitProfile(); });
   window.addEventListener('scroll', updateProgress, {passive: true});
   window.addEventListener('resize', () => {
     controllers.forEach(settleAccordion);
     updateIndicator();
     updateProgress();
+    fitProfile();
   });
   if ('ResizeObserver' in window) {
     new ResizeObserver(updateProgress).observe(document.querySelector('main'));
